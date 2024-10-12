@@ -35,6 +35,9 @@ export class UserController {
 
   updateUser = async (req: Request, res: Response) => {
     try {
+      if(req.params.id != req.user?.userId) {
+        throw new ApiError('Not authorized to edit this user.', 403);
+      }
       const user = await this.userService.updateUser(req.params.id, req.body);
       res.json(user);
     } catch (error) {
