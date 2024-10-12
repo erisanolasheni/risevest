@@ -61,9 +61,6 @@ jobs:
       - self-hosted
       - prod
 
-    needs:
-      - test
-
     steps:
       - name: Set correct permissions
         run: |
