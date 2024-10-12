@@ -1,0 +1,36 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    restart: 'no'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
