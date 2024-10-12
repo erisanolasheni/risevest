@@ -15,7 +15,7 @@ describe("AuthController", () => {
 
   const mockUser = {
     id: "userId123",
-    email: "john@example.com",
+    email: "olasheni@example.com",
     passwordHash: "hashedPassword",
   };
 
@@ -65,7 +65,7 @@ describe("AuthController", () => {
     const req = {
       body: {
         name: "Erisan Olasheni",
-        email: "john@example.com",
+        email: "olasheni@example.com",
         password: "password123",
       },
     } as Partial<Request>;
@@ -90,7 +90,7 @@ describe("AuthController", () => {
 
     const req = {
       body: {
-        email: "john@example.com",
+        email: "olasheni@example.com",
         password: "password123",
       },
     } as Partial<Request>;
@@ -143,7 +143,7 @@ describe("AuthController", () => {
 
     const req = {
       body: {
-        email: "john@example.com",
+        email: "olasheni@example.com",
         password: "wrongPassword",
       },
     } as Partial<Request>;

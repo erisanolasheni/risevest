@@ -3,7 +3,7 @@ import { IUser, IUserCreate, IUserUpdate } from "../types/custom";
 
 export class UserModel {
   static async create(
-    userData: Omit<IUserCreate, 'password'> & { passwordHash: string }
+    userData: Omit<IUserCreate, "password"> & { passwordHash: string }
   ): Promise<IUser> {
     const query = `
             INSERT INTO "users" ("name", "email", "passwordHash")
@@ -21,7 +21,11 @@ RETURNING "id", "name", "email", "createdAt";
 
   static async update(id: string, data: IUserUpdate): Promise<IUser | null> {
     const fields = Object.keys(data)
-      .map((key, index) => `${key} = $${index + 2}`)
+      // change key to passwordHash if password is updated
+      .map(
+        (key, index) =>
+          `${key == "password" ? "passwordHash" : key} = $${index + 2}`
+      )
       .join(", ");
 
     const query = `

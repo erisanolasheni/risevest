@@ -542,6 +542,45 @@ docker compose run app npm test
 
 ✓ should return error with status 401 if password is invalid (3 ms)
 
+### UserService
+#### createUser
+
+  ✓ should create a new user successfully (9 ms)
+
+  ✓ should throw an error if email already exists (19 ms)
+
+#### getUserById
+
+  ✓ should return user by ID (1 ms)
+
+  ✓ should throw an error if user not found (2 ms)
+
+#### updateUser
+
+  ✓ should update user successfully (3 ms)
+  
+  ✓ should hash the password if provided during update (1 ms)
+
+  ✓ should throw an error if user not found during update (2 ms)
+
+#### deleteUser
+
+  ✓ should delete user successfully (1 ms)
+
+  ✓ should throw an error if user not found during delete (1 ms)
+
+#### getAllUsers
+
+  ✓ should return all users (1 ms)
+
+### getUserPosts
+
+  ✓ should return posts for a given user ID (1 ms)
+
+#### getTopUsersWithLatestComments
+
+  ✓ should return top users with their latest comments (1 ms)
+
 
 ## Server Details
 Hosted on AWS EC2

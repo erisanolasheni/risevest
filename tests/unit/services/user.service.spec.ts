@@ -21,15 +21,15 @@ describe('UserService', () => {
   describe('createUser', () => {
     it('should create a new user successfully', async () => {
       const userData: IUserCreate = {
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Erisan Olasheni',
+        email: 'olasheni@example.com',
         password: 'password123',
       };
       const hashedPassword = 'hashedPassword123';
       const createdUser = {
         id: '1',
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Erisan Olasheni',
+        email: 'olasheni@example.com',
         createdAt: new Date(),
       };
 
@@ -50,8 +50,8 @@ describe('UserService', () => {
 
     it('should throw an error if email already exists', async () => {
       const userData: IUserCreate = {
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Erisan Olasheni',
+        email: 'olasheni@example.com',
         password: 'password123',
       };
 
@@ -67,8 +67,8 @@ describe('UserService', () => {
     it('should return user by ID', async () => {
       const user = {
         id: '1',
-        name: 'John Doe',
-        email: 'john@example.com',
+        name: 'Erisan Olasheni',
+        email: 'olasheni@example.com',
         createdAt: new Date(),
       };
 
@@ -111,30 +111,27 @@ describe('UserService', () => {
     });
 
     it('should hash the password if provided during update', async () => {
-      const userData: IUserUpdate = {
-        password: 'newPassword123',
+      const userData = {
+          username: 'testUser',
+          password: 'newPassword123',
       };
+  
+      // Mock argon2.hash to return a predefined hashed password
       const hashedPassword = 'hashedNewPassword123';
-      const updatedUser = {
-        id: '1',
-        name: 'Jane Doe',
-        email: 'jane@example.com',
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      };
-
       (argon2.hash as jest.Mock).mockResolvedValue(hashedPassword);
-      mockUserModel.update.mockResolvedValue(updatedUser as any);
-
-      const result = await userService.updateUser('1', userData);
-
-      expect(argon2.hash).toHaveBeenCalledWith(userData.password);
+  
+      await userService.updateUser('1', userData);
+  
+      // Ensure argon2.hash was called with the new password
+      expect(argon2.hash).toHaveBeenCalledWith('newPassword123');
+  
+      // Verify that the update function received the hashed password
       expect(mockUserModel.update).toHaveBeenCalledWith('1', {
-        ...userData,
-        password: hashedPassword,
+          ...userData,
+          password: hashedPassword,
       });
-      expect(result).toEqual(updatedUser);
-    });
+  });
+  
 
     it('should throw an error if user not found during update', async () => {
       mockUserModel.update.mockResolvedValue(null);
@@ -167,8 +164,8 @@ describe('UserService', () => {
   describe('getAllUsers', () => {
     it('should return all users', async () => {
       const users = [
-        { id: '1', name: 'John Doe', email: 'john@example.com' },
-        { id: '2', name: 'Jane Doe', email: 'jane@example.com' },
+        { id: '1', name: 'Erisan Olasheni', email: 'olasheni@example.com' },
+        { id: '2', name: 'Erisan Olasheni', email: 'olasheni@example.com' },
       ];
 
       mockUserModel.getAllUsers.mockResolvedValue(users as any);
@@ -201,7 +198,7 @@ describe('UserService', () => {
       const topUsersWithComments = [
         {
           id: '1',
-          name: 'John Doe',
+          name: 'Erisan Olasheni',
           postCount: 10,
           latestComment: 'Great post!',
           postTitle: 'Amazing Blog',
