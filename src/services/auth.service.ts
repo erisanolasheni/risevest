@@ -65,11 +65,8 @@ export class AuthService {
         password
       });
 
-      logger.warn("the logger of create user is "+result)
-
       return result;
     } catch (error) {
-      logger.error(error);
       throw <any>error;
     }
   }
@@ -106,7 +103,6 @@ export class AuthService {
   async logout(token: string) {
     const tokenParts = token.split(".");
     const payload = JSON.parse(Buffer.from(tokenParts[1], "base64").toString());
-    logger.warn("the payload is " + payload);
     const expirationTime = payload.exp;
 
     const now = Math.floor(Date.now() / 1000);

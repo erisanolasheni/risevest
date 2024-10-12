@@ -19,8 +19,6 @@ export class AuthController {
         password
       );
 
-      logger.warn("mocked logins  " + JSON.stringify({ accessToken, refreshToken } ));
-
       res.json({
         accessToken,
         refreshToken,

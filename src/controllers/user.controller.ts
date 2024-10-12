@@ -24,10 +24,8 @@ export class UserController {
     try {
       const user = await this.userService.getUserById(req.params.id);
 
-      logger.warn(`the user is ${JSON.stringify(user)}`);
       res.json(user).status(200);
     } catch (error) {
-      logger.error(`the user is ${error}`);
       if (error instanceof ApiError) {
         res.status(error.statusCode).json({ message: error.message });
       } else {

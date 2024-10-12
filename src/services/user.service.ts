@@ -66,8 +66,6 @@ export class UserService {
 
       const updatedUser = await this.userModel.update(id, userData);
 
-      logger.warn(`the updatedUser is ${JSON.stringify(updatedUser)}`)
-
       if (!updatedUser) {
         throw new ApiError("User not found", 404);
       }
