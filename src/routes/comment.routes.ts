@@ -19,11 +19,11 @@ export class CommentRoutes extends BaseRoutes {
 
   protected initializeRoutes(): void {
     this.router.put(
-      "/comments/:id",
+      "/:id",
       this.validate(validateComment),
       this.commentController.updateComment
     );
-    this.router.delete("/comments/:id", this.commentController.deleteComment);
+    this.router.delete("/:id", this.commentController.deleteComment);
   }
 }
 

@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import { IUserCreate, IUserUpdate, IUserResponse } from "../types/custom";
-import { DatabaseError, ApiError } from "../utils/logger";
+import { DatabaseError, ApiError, logger } from "../utils/logger";
 import { UserModel } from "../models/user.model";
 
 export class UserService {
@@ -65,6 +65,8 @@ export class UserService {
       }
 
       const updatedUser = await this.userModel.update(id, userData);
+
+      logger.warn(`the updatedUser is ${JSON.stringify(updatedUser)}`)
 
       if (!updatedUser) {
         throw new ApiError("User not found", 404);

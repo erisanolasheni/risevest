@@ -1,4 +1,4 @@
-name: AWS Production API Environment
+name: AWS prod API Environment
 
 on:
   push:
@@ -31,15 +31,26 @@ jobs:
           envkey_NODE_ENV: ${{ secrets.NODE_ENV }}
           envkey_DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
           envkey_DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-          envkey_DATABASE_USER: ${{ secrets.DATABASE_USER }}
-          envkey_DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-          envkey_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          envkey_POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          envkey_POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          envkey_POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+
+          envkey_REDIS_HOST: ${{ secrets.REDIS_HOST }}
+          envkey_REDIS_PORT: ${{ secrets.REDIS_PORT }}
+          envkey_REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
+          envkey_REDIS_URL: ${{ secrets.REDIS_URL }}
+
+
+
           envkey_JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          envkey_JWT_EXPIRATION_TIME: ${{ secrets.JWT_EXPIRATION_TIME }}
-          envkey_AWS_BUCKET_REGION: ${{ secrets.AWS_BUCKET_REGION }}
-          envkey_AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
-          envkey_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          envkey_AWS_ACCESS_KEY_SECRET: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+          envkey_JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+
+          envkey_API_PREFIX: ${{ secrets.API_PREFIX }}
+
+
+          envkey_LOG_LEVEL: ${{ secrets.LOG_LEVEL }}
+
+          
    
           file_name: .env
           fail_on_empty: false

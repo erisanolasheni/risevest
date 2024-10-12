@@ -1,5 +1,4 @@
 import { AuthController } from "../../../src/controllers/auth.controller";
-import { UserService } from "../../../src/services/user.service";
 import argon2 from "argon2";
 import { generateToken } from "../../../src/utils/jwt";
 import { UserModel } from "../../../src/models/user.model";
@@ -11,17 +10,15 @@ jest.mock("../../../src/models/user.model");
 
 describe("AuthController", () => {
   let authController: AuthController;
-  let userService: UserService;
 
   const mockUser = {
     id: "userId123",
-    email: "john@example.com",
+    email: "olasheni@example.com",
     passwordHash: "hashedPassword",
   };
 
   beforeEach(() => {
     // Initialize the mock UserService
-    userService = new UserService(UserModel);
     authController = new AuthController(pool);
   });
 
@@ -65,7 +62,7 @@ describe("AuthController", () => {
     const req = {
       body: {
         name: "Erisan Olasheni",
-        email: "john@example.com",
+        email: "olasheni@example.com",
         password: "password123",
       },
     } as Partial<Request>;
@@ -90,7 +87,7 @@ describe("AuthController", () => {
 
     const req = {
       body: {
-        email: "john@example.com",
+        email: "olasheni@example.com",
         password: "password123",
       },
     } as Partial<Request>;
@@ -143,7 +140,7 @@ describe("AuthController", () => {
 
     const req = {
       body: {
-        email: "john@example.com",
+        email: "olasheni@example.com",
         password: "wrongPassword",
       },
     } as Partial<Request>;

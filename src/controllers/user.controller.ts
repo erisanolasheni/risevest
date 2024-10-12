@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserService } from "../services/user.service";
-import { ApiError, DatabaseError } from "../utils/logger";
+import { ApiError, DatabaseError, logger } from "../utils/logger";
 
 export class UserController {
   constructor(private userService: UserService) {}
@@ -23,8 +23,11 @@ export class UserController {
   getUserById = async (req: Request, res: Response) => {
     try {
       const user = await this.userService.getUserById(req.params.id);
-      res.json(user);
+
+      logger.warn(`the user is ${JSON.stringify(user)}`);
+      res.json(user).status(200);
     } catch (error) {
+      logger.error(`the user is ${error}`);
       if (error instanceof ApiError) {
         res.status(error.statusCode).json({ message: error.message });
       } else {
@@ -35,6 +38,9 @@ export class UserController {
 
   updateUser = async (req: Request, res: Response) => {
     try {
+      if (req.params.id != req.user?.userId) {
+        throw new ApiError("Not authorized to edit this user.", 403);
+      }
       const user = await this.userService.updateUser(req.params.id, req.body);
       res.json(user);
     } catch (error) {

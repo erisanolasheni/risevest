@@ -489,11 +489,22 @@ Tests are written for all main entities, including middlewares, services, and co
   - `tests/unit/controllers/post.controller.spec.ts`
   - `tests/unit/controllers/comment.controller.spec.ts`
 
-### Coverage:
-- **Lines**: 85%
-- **Branches**: 82%
-- **Functions**: 88%
+### Test Coverage Summary:
+- **Statements**   : 70% ( 161/230 )
+- **Branches**     : 48.97% ( 24/49 )
+- **Functions**    : 66.66% ( 24/36 )
+- **Lines**        : 69.33% ( 156/225 )
 
+
+# Run The App
+```bash
+docker compose up
+```
+
+# Run Tests
+``` bash
+docker compose run app npm test
+```
 
 ### Test Results
 #### AuthMiddleware
@@ -532,18 +543,113 @@ Tests are written for all main entities, including middlewares, services, and co
 
 ✓ should return error with status 401 if password is invalid (3 ms)
 
+### UserService
+#### createUser
+
+  ✓ should create a new user successfully (9 ms)
+
+  ✓ should throw an error if email already exists (19 ms)
+
+#### getUserById
+
+  ✓ should return user by ID (1 ms)
+
+  ✓ should throw an error if user not found (2 ms)
+
+#### updateUser
+
+  ✓ should update user successfully (3 ms)
+  
+  ✓ should hash the password if provided during update (1 ms)
+
+  ✓ should throw an error if user not found during update (2 ms)
+
+#### deleteUser
+
+  ✓ should delete user successfully (1 ms)
+
+  ✓ should throw an error if user not found during delete (1 ms)
+
+#### getAllUsers
+
+  ✓ should return all users (1 ms)
+
+### getUserPosts
+
+  ✓ should return posts for a given user ID (1 ms)
+
+#### getTopUsersWithLatestComments
+
+  ✓ should return top users with their latest comments (1 ms)
+
+### UserController
+
+    createUser
+
+      ✓ should create a user and return 201 (9 ms)
+
+      ✓ should return 400 if ApiError is thrown (5 ms)
+
+      ✓ should return 500 if DatabaseError is thrown (1 ms)
+
+      ✓ should return 500 for unexpected errors (1 ms)
+
+    getUserById
+
+      ✓ should return a user (3 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    updateUser
+
+      ✓ should update the user and return the user (1 ms)
+
+      ✓ should return 403 if the user is not authorized to edit (2 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    getAllUsers
+
+      ✓ should return all users (1 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    deleteUser
+
+      ✓ should delete a user and return 204 (1 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    getUserPosts
+
+      ✓ should return user posts (1 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    getTopUsersWithLatestComments
+
+      ✓ should return top users with latest comments (6 ms)
+
+      ✓ should return 500 for unexpected errors (1 ms)
+
+
+## Server Details
+Hosted on AWS EC2
+
 
 ## CI/CD
 The project leverages [Github Actions](https://docs.github.com/en/actions) for its CI/CD pipelines.
 The workflow file can be found at: .github/workflows/production.yml
+### Deployment Process
+![Deployment Process](deploy/deploy.png)
 
 
 ### Links
 
 Github Repo Link: 
 
-Production API URL Link: (Server URL)[https://risevest.revios.net/api]
+Production API URL Link: (Server URL)[http://98.80.92.145/api/v1]
 
-Postman colection docs URL: [https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb](https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb)
+Postman collection docs URL: [https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb](https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb)
 
 SQL Benchmark Test Link: [https://sqlplayground.app/sandbox/670915a4c216ed00cb809477](https://sqlplayground.app/sandbox/670915a4c216ed00cb809477)

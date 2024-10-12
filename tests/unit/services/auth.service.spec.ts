@@ -60,7 +60,6 @@ describe("AuthService", () => {
     const email = "test@example.com";
     const password = "password";
     const userData = {
-      id: "user-id",
       name,
       email,
       passwordHash: await argon2.hash(password),
@@ -76,11 +75,13 @@ describe("AuthService", () => {
 
     // Assertions
     expect(UserModel.findUserByEmail).toHaveBeenCalledWith(email); // Ensure it checks for existing users
-    expect(UserModel.create).toHaveBeenCalledWith({
-      name,
-      email,
-      password: expect.any(String), // Check that the password is hashed
-    });
+    expect(UserModel.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name,
+        email,
+        passwordHash: expect.any(String), // Check that the password is hashed
+      })
+    );
     expect(result).toEqual(userData);
   });
 
