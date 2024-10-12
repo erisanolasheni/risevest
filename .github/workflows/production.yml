@@ -73,6 +73,7 @@ jobs:
         # run: npm run test
         run: |
           docker compose run app npm test
+          
   build:
     environment: prod
     runs-on:
