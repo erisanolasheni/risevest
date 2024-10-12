@@ -32,7 +32,7 @@ class App {
     }
 
     private initializeRoutes(): void {
-        this.app.use('/api', createApiRoutes(pool));
+        this.app.use(process.env.API_PREFIX || '/api/v1', createApiRoutes(pool));
     }
 
     private initializeErrorHandling(): void {

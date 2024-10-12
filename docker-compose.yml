@@ -7,13 +7,15 @@ services:
       - "3000:3000"
     env_file:
       - .env
-    restart: 'no'
+    restart: always
+    volumes:
+      - .:/usr/src/app
     depends_on:
       - postgres
       - redis
 
   postgres:
-    image: postgres:latest
+    image: postgres:17
     ports:
       - "5432:5432"
     env_file:

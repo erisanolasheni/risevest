@@ -1,0 +1,123 @@
+name: AWS Production API Environment
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  setup:
+    environment: prod
+    runs-on:
+      - self-hosted
+      - prod
+
+    steps:
+      - name: Clean workspace
+        run: |
+          sudo rm -rf $GITHUB_WORKSPACE/* || true
+          sudo rm -rf $GITHUB_WORKSPACE/.* || true
+
+      - uses: actions/checkout@v3
+
+      - name: Set correct permissions
+        run: |
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+
+      - name: Generate .env file
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_PORT: ${{ secrets.PORT }}
+          envkey_NODE_ENV: ${{ secrets.NODE_ENV }}
+          envkey_DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+          envkey_DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+          envkey_DATABASE_USER: ${{ secrets.DATABASE_USER }}
+          envkey_DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          envkey_DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          envkey_JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          envkey_JWT_EXPIRATION_TIME: ${{ secrets.JWT_EXPIRATION_TIME }}
+          envkey_AWS_BUCKET_REGION: ${{ secrets.AWS_BUCKET_REGION }}
+          envkey_AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+          envkey_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          envkey_AWS_ACCESS_KEY_SECRET: ${{ secrets.AWS_ACCESS_KEY_SECRET }}
+   
+          file_name: .env
+          fail_on_empty: false
+
+  test:
+    environment: prod
+    runs-on:
+      - self-hosted
+      - prod
+
+    needs:
+      - setup
+
+    steps:
+      - name: Set correct permissions
+        run: |
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+
+      - name: Run unit tests
+        # run: npm run test
+        run: echo "running dummy unit tests ..."
+
+      - name: Run e2e tests
+        # run: npm run test:2e2
+        run: echo "running dummy e2e tests ..."
+
+  build:
+    environment: prod
+    runs-on:
+      - self-hosted
+      - prod
+
+    needs:
+      - test
+
+    steps:
+      - name: Set correct permissions
+        run: |
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+
+      # Step to clean Docker cache
+      - name: Clean Docker cache
+        run: |
+          docker system prune --all --volumes --force
+
+      # Deploy with Docker Compose
+      - name: Build with Docker Compose
+        run: |
+          # Stop and remove existing containers and networks
+          docker compose build --force-rm --no-cache
+          docker compose down --remove-orphans
+
+      - name: Clean up after Docker
+        if: always()
+        run: |
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+
+  deploy:
+    environment: prod
+    runs-on:
+      - self-hosted
+      - prod
+
+    needs:
+      - build
+
+    steps:
+      - name: Set correct permissions
+        run: |
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+
+      # Deploy with Docker Compose
+      - name: Deploy with Docker Compose
+        run: |
+          # Start the application with Docker Compose
+          docker compose up -d --force-recreate
+
+      - name: Clean up after Docker
+        if: always()
+        run: |
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE

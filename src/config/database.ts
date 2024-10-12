@@ -7,7 +7,11 @@ import * as path from 'path';
 env();
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  host: process.env.DATABASE_HOST,
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
+  port: Number(process.env.DB_PORT) || 5432
 });
 
 const loadSchema = async () => {

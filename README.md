@@ -466,17 +466,6 @@ Feel free to customize any part of this documentation as needed!
 You can view it from [SQL Playground](https://sqlplayground.app/sandbox/670915a4c216ed00cb809477).
 
 
-
-
-
-
-
-
-
-
-
-
-
   
 ---
 
@@ -543,6 +532,10 @@ Tests are written for all main entities, including middlewares, services, and co
 
 ✓ should return error with status 401 if password is invalid (3 ms)
 
+
+## CI/CD
+The project leverages [Github Actions](https://docs.github.com/en/actions) for its CI/CD pipelines.
+The workflow file can be found at: .github/workflows/production.yml
 
 
 ### Links
