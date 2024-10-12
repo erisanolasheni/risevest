@@ -8,8 +8,6 @@ services:
     env_file:
       - .env
     restart: always
-    networks:
-      - revio-network
     volumes:
       - .:/usr/src/app
     depends_on:
@@ -22,11 +20,9 @@ services:
       - "5432:5432"
     env_file:
       - .env
-    restart: always 
+    restart: 'always'
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    networks:
-      - revio-network
 
   redis:
     image: redis:alpine
@@ -34,14 +30,17 @@ services:
       - "6379:6379"
     volumes:
       - redis_data:/data
-    networks:
-      - revio-network
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./.nginx/nginx.staging.conf:/etc/nginx/nginx.conf
+    ports:
+      - '80:80'
+    depends_on:
+      - app  
 
 volumes:
   postgres_data:
   redis_data:
-
-
-networks:
-  revio-network:
-  external: true

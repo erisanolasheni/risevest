@@ -3,14 +3,14 @@ name: AWS Production API Environment
 on:
   push:
     branches:
-      - staging
+      - production
 
 jobs:
   setup:
-    environment: staging
+    environment: production
     runs-on:
       - self-hosted
-      - staging
+      - production
 
     steps:
       - name: Clean workspace
@@ -45,10 +45,10 @@ jobs:
           fail_on_empty: false
 
   test:
-    environment: staging
+    environment: production
     runs-on:
       - self-hosted
-      - staging
+      - production
 
     needs:
       - setup
@@ -67,10 +67,10 @@ jobs:
         run: echo "running dummy e2e tests ..."
 
   build:
-    environment: staging
+    environment: production
     runs-on:
       - self-hosted
-      - staging
+      - production
 
     needs:
       - test
@@ -98,10 +98,10 @@ jobs:
           sudo chown -R $USER:$USER $GITHUB_WORKSPACE
 
   deploy:
-    environment: staging
+    environment: production
     runs-on:
       - self-hosted
-      - staging
+      - production
 
     needs:
       - build
