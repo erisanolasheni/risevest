@@ -60,10 +60,10 @@ class App {
 
 
 
+const {PORT} = process.env  
 
-
-new App().app.listen(3000, () => {
-    console.log(`Server running on port ${3000}`);
+new App().app.listen(PORT || 3000, () => {
+    console.log(`Server running on port ${PORT || 3000}`);
 });
 
 

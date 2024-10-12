@@ -495,6 +495,16 @@ Tests are written for all main entities, including middlewares, services, and co
 - **Functions**: 88%
 
 
+# Run The App
+```bash
+docker compose up
+```
+
+# Run Tests
+``` bash
+docker compose run app npm test
+```
+
 ### Test Results
 #### AuthMiddleware
 
@@ -531,6 +541,10 @@ Tests are written for all main entities, including middlewares, services, and co
 ✓ should return error with status 401 if user not found (2 ms)
 
 ✓ should return error with status 401 if password is invalid (3 ms)
+
+
+## Server Details
+Hosted on AWS EC2
 
 
 ## CI/CD
