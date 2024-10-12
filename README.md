@@ -536,6 +536,8 @@ Tests are written for all main entities, including middlewares, services, and co
 ## CI/CD
 The project leverages [Github Actions](https://docs.github.com/en/actions) for its CI/CD pipelines.
 The workflow file can be found at: .github/workflows/production.yml
+### Deployment Process
+![Deployment Process](deploy/deploy.png)
 
 
 ### Links
