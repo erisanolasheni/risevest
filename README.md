@@ -544,8 +544,8 @@ The workflow file can be found at: .github/workflows/production.yml
 
 Github Repo Link: 
 
-Production API URL Link: (Server URL)[https://risevest.revios.net/api]
+Production API URL Link: (Server URL)[http://98.80.92.145/api/v1]
 
-Postman colection docs URL: [https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb](https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb)
+Postman collection docs URL: [https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb](https://www.postman.com/security-cosmonaut-78394807/workspace/risevest-senior-engineer-workspace/collection/38967625-c33fff0a-b4da-4509-b319-cf4a8a4a2794?action=share&source=copy-link&creator=38967625&active-environment=d1d38409-c7b6-44ae-9235-ab31821953bb)
 
 SQL Benchmark Test Link: [https://sqlplayground.app/sandbox/670915a4c216ed00cb809477](https://sqlplayground.app/sandbox/670915a4c216ed00cb809477)
