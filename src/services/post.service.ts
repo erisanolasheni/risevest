@@ -28,7 +28,7 @@ export class PostService {
       return post as unknown as IPostResponse;
     } catch (error) {
       if (!(error instanceof ApiError)) {
-        logger.error(error); // Log unexpected errors
+        logger.error(error);
         throw new DatabaseError("Error fetching post");
       }
       throw error;
@@ -56,7 +56,7 @@ export class PostService {
       return result;
     } catch (error) {
       if (!(error instanceof ApiError)) {
-        logger.error(error); // Log unexpected errors
+        logger.error(error);
         throw new DatabaseError("Error updating post");
       }
       throw error;
