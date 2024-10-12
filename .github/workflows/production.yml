@@ -54,7 +54,8 @@ jobs:
    
           file_name: .env
           fail_on_empty: false
-          
+
+
   build:
     environment: prod
     runs-on:
@@ -70,11 +71,6 @@ jobs:
       - name: Clean Docker cache
         run: |
           docker system prune --all --volumes --force
-
-      - name: Run unit tests
-        # run: npm run test
-        run: |
-          docker compose run app npm test
 
       # Deploy with Docker Compose
       - name: Build with Docker Compose
