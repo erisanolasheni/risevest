@@ -54,7 +54,6 @@ jobs:
    
           file_name: .env
           fail_on_empty: false
-
           
   build:
     environment: prod
