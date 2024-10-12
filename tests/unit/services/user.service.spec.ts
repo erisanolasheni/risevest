@@ -1,4 +1,3 @@
-// tests/unit/services/user.service.spec.ts
 import argon2 from 'argon2';
 import { UserService } from '../../../src/services/user.service';
 import { UserModel } from '../../../src/models/user.model';

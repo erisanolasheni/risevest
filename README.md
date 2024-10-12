@@ -489,10 +489,11 @@ Tests are written for all main entities, including middlewares, services, and co
   - `tests/unit/controllers/post.controller.spec.ts`
   - `tests/unit/controllers/comment.controller.spec.ts`
 
-### Coverage:
-- **Lines**: 85%
-- **Branches**: 82%
-- **Functions**: 88%
+### Test Coverage Summary:
+- **Statements**   : 70% ( 161/230 )
+- **Branches**     : 48.97% ( 24/49 )
+- **Functions**    : 66.66% ( 24/36 )
+- **Lines**        : 69.33% ( 156/225 )
 
 
 # Run The App
@@ -580,6 +581,56 @@ docker compose run app npm test
 #### getTopUsersWithLatestComments
 
   ✓ should return top users with their latest comments (1 ms)
+
+### UserController
+
+    createUser
+
+      ✓ should create a user and return 201 (9 ms)
+
+      ✓ should return 400 if ApiError is thrown (5 ms)
+
+      ✓ should return 500 if DatabaseError is thrown (1 ms)
+
+      ✓ should return 500 for unexpected errors (1 ms)
+
+    getUserById
+
+      ✓ should return a user (3 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    updateUser
+
+      ✓ should update the user and return the user (1 ms)
+
+      ✓ should return 403 if the user is not authorized to edit (2 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    getAllUsers
+
+      ✓ should return all users (1 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    deleteUser
+
+      ✓ should delete a user and return 204 (1 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    getUserPosts
+
+      ✓ should return user posts (1 ms)
+
+      ✓ should return 500 for unexpected errors (2 ms)
+
+    getTopUsersWithLatestComments
+
+      ✓ should return top users with latest comments (6 ms)
+
+      ✓ should return 500 for unexpected errors (1 ms)
 
 
 ## Server Details

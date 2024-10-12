@@ -1,5 +1,4 @@
 import { AuthController } from "../../../src/controllers/auth.controller";
-import { UserService } from "../../../src/services/user.service";
 import argon2 from "argon2";
 import { generateToken } from "../../../src/utils/jwt";
 import { UserModel } from "../../../src/models/user.model";
@@ -11,7 +10,6 @@ jest.mock("../../../src/models/user.model");
 
 describe("AuthController", () => {
   let authController: AuthController;
-  let userService: UserService;
 
   const mockUser = {
     id: "userId123",
@@ -21,7 +19,6 @@ describe("AuthController", () => {
 
   beforeEach(() => {
     // Initialize the mock UserService
-    userService = new UserService(UserModel);
     authController = new AuthController(pool);
   });
 

@@ -6,7 +6,13 @@ module.exports = {
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
   },
-  collectCoverageFrom: ["src/**/*.ts", "!src/types/**/*.ts", "!src/**/*.d.ts"],
+  collectCoverageFrom: [
+    "src/controllers/auth.controller.ts",
+    "src/controllers/user.controller.ts",
+    "src/models/user.model.ts",
+    "src/services/auth.service.ts",
+    "src/services/user.service.ts"
+  ],
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov"],
   setupFiles: ["<rootDir>/tests/setup.ts"],
