@@ -72,7 +72,7 @@ jobs:
       - name: Run unit tests
         # run: npm run test
         run: |
-          docker compose run api npm test
+          docker compose run app npm test
 
   build:
     environment: prod
