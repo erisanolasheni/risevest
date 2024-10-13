@@ -26,7 +26,7 @@ describe('UserService', () => {
       };
       const hashedPassword = 'hashedPassword123';
       const createdUser = {
-        id: '1',
+        id: 'uu-id',
         name: 'Erisan Olasheni',
         email: 'olasheni@example.com',
         createdAt: new Date(),
@@ -65,7 +65,7 @@ describe('UserService', () => {
   describe('getUserById', () => {
     it('should return user by ID', async () => {
       const user = {
-        id: '1',
+        id: 'uu-id',
         name: 'Erisan Olasheni',
         email: 'olasheni@example.com',
         createdAt: new Date(),
@@ -73,16 +73,16 @@ describe('UserService', () => {
 
       mockUserModel.getUserById.mockResolvedValue(user as any);
 
-      const result = await userService.getUserById('1');
+      const result = await userService.getUserById('uu-id');
 
-      expect(mockUserModel.getUserById).toHaveBeenCalledWith('1');
+      expect(mockUserModel.getUserById).toHaveBeenCalledWith('uu-id');
       expect(result).toEqual(user);
     });
 
     it('should throw an error if user not found', async () => {
       mockUserModel.getUserById.mockResolvedValue(null);
 
-      await expect(userService.getUserById('1')).rejects.toThrowError(
+      await expect(userService.getUserById('uu-id')).rejects.toThrowError(
         new ApiError('User not found', 404)
       );
     });
@@ -94,7 +94,7 @@ describe('UserService', () => {
         name: 'Jane Doe',
       };
       const updatedUser = {
-        id: '1',
+        id: 'uu-id',
         name: 'Jane Doe',
         email: 'jane@example.com',
         createdAt: new Date(),
@@ -103,9 +103,9 @@ describe('UserService', () => {
 
       mockUserModel.update.mockResolvedValue(updatedUser as any);
 
-      const result = await userService.updateUser('1', userData);
+      const result = await userService.updateUser('uu-id', userData);
 
-      expect(mockUserModel.update).toHaveBeenCalledWith('1', userData);
+      expect(mockUserModel.update).toHaveBeenCalledWith('uu-id', userData);
       expect(result).toEqual(updatedUser);
     });
 
@@ -119,13 +119,13 @@ describe('UserService', () => {
       const hashedPassword = 'hashedNewPassword123';
       (argon2.hash as jest.Mock).mockResolvedValue(hashedPassword);
   
-      await userService.updateUser('1', userData);
+      await userService.updateUser('uu-id', userData);
   
       // Ensure argon2.hash was called with the new password
       expect(argon2.hash).toHaveBeenCalledWith('newPassword123');
   
       // Verify that the update function received the hashed password
-      expect(mockUserModel.update).toHaveBeenCalledWith('1', {
+      expect(mockUserModel.update).toHaveBeenCalledWith('uu-id', {
           ...userData,
           password: hashedPassword,
       });
@@ -135,7 +135,7 @@ describe('UserService', () => {
     it('should throw an error if user not found during update', async () => {
       mockUserModel.update.mockResolvedValue(null);
 
-      await expect(userService.updateUser('1', {})).rejects.toThrowError(
+      await expect(userService.updateUser('uu-id', {})).rejects.toThrowError(
         new ApiError('User not found', 404)
       );
     });
@@ -145,16 +145,16 @@ describe('UserService', () => {
     it('should delete user successfully', async () => {
       mockUserModel.deleteUser.mockResolvedValue(true);
 
-      const result = await userService.deleteUser('1');
+      const result = await userService.deleteUser('uu-id');
 
-      expect(mockUserModel.deleteUser).toHaveBeenCalledWith('1');
+      expect(mockUserModel.deleteUser).toHaveBeenCalledWith('uu-id');
       expect(result).toBe(true);
     });
 
     it('should throw an error if user not found during delete', async () => {
       mockUserModel.deleteUser.mockResolvedValue(false);
 
-      await expect(userService.deleteUser('1')).rejects.toThrowError(
+      await expect(userService.deleteUser('uu-id')).rejects.toThrowError(
         new ApiError('User not found', 404)
       );
     });
@@ -163,7 +163,7 @@ describe('UserService', () => {
   describe('getAllUsers', () => {
     it('should return all users', async () => {
       const users = [
-        { id: '1', name: 'Erisan Olasheni', email: 'olasheni@example.com' },
+        { id: 'uu-id', name: 'Erisan Olasheni', email: 'olasheni@example.com' },
         { id: '2', name: 'Erisan Olasheni', email: 'olasheni@example.com' },
       ];
 
@@ -179,15 +179,15 @@ describe('UserService', () => {
   describe('getUserPosts', () => {
     it('should return posts for a given user ID', async () => {
       const posts = [
-        { id: '1', title: 'Post 1', content: 'Content 1', userId: '1' },
-        { id: '2', title: 'Post 2', content: 'Content 2', userId: '1' },
+        { id: 'uu-id', title: 'Post 1', content: 'Content 1', userId: 'uu-id' },
+        { id: '2', title: 'Post 2', content: 'Content 2', userId: 'uu-id' },
       ];
 
       mockUserModel.getUserPosts.mockResolvedValue(posts);
 
-      const result = await userService.getUserPosts('1');
+      const result = await userService.getUserPosts('uu-id');
 
-      expect(mockUserModel.getUserPosts).toHaveBeenCalledWith('1');
+      expect(mockUserModel.getUserPosts).toHaveBeenCalledWith('uu-id');
       expect(result).toEqual(posts);
     });
   });
@@ -196,7 +196,7 @@ describe('UserService', () => {
     it('should return top users with their latest comments', async () => {
       const topUsersWithComments = [
         {
-          id: '1',
+          id: 'uu-id',
           name: 'Erisan Olasheni',
           postCount: 10,
           latestComment: 'Great post!',

@@ -60,7 +60,7 @@ describe('AuthMiddleware', () => {
 
   it('should return 401 if token is blacklisted', async () => {
     (extractTokenFromHeader as jest.Mock).mockReturnValue('blacklisted.jwt.token');
-    (redisClient.get as jest.Mock).mockResolvedValue('1');
+    (redisClient.get as jest.Mock).mockResolvedValue('uu-id');
 
     await authMiddleware.authenticate(req as Request, res as Response, next);
 

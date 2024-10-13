@@ -471,8 +471,6 @@ You can view it from [SQL Playground](https://sqlplayground.app/sandbox/670915a4
 
 ## Unit Tests
 
-## Test Coverage
-
 Tests are written for all main entities, including middlewares, services, and controllers.
 
 ### Test Files:
@@ -490,10 +488,10 @@ Tests are written for all main entities, including middlewares, services, and co
   - `tests/unit/controllers/comment.controller.spec.ts`
 
 ### Test Coverage Summary:
-- **Statements**   : 70% ( 161/230 )
-- **Branches**     : 48.97% ( 24/49 )
-- **Functions**    : 66.66% ( 24/36 )
-- **Lines**        : 69.33% ( 156/225 )
+- **Statements**   : 66.43% ( 281/423 )
+- **Branches**     : 43.56% ( 44/101 )
+- **Functions**    : 63.01% ( 46/73 )
+- **Lines**        : 65.78% ( 273/415 )
 
 
 # Run The App
@@ -584,53 +582,129 @@ docker compose run app npm test
 
 ### UserController
 
-    createUser
+#### createUser
 
-      ✓ should create a user and return 201 (9 ms)
+  ✓ should create a user and return 201 (9 ms)
 
-      ✓ should return 400 if ApiError is thrown (5 ms)
+  ✓ should return 400 if ApiError is thrown (5 ms)
 
-      ✓ should return 500 if DatabaseError is thrown (1 ms)
+  ✓ should return 500 if DatabaseError is thrown (1 ms)
 
-      ✓ should return 500 for unexpected errors (1 ms)
+  ✓ should return 500 for unexpected errors (1 ms)
 
-    getUserById
+#### getUserById
 
-      ✓ should return a user (3 ms)
+  ✓ should return a user (3 ms)
 
-      ✓ should return 500 for unexpected errors (2 ms)
+  ✓ should return 500 for unexpected errors (2 ms)
 
-    updateUser
+#### updateUser
 
-      ✓ should update the user and return the user (1 ms)
+  ✓ should update the user and return the user (1 ms)
 
-      ✓ should return 403 if the user is not authorized to edit (2 ms)
+  ✓ should return 403 if the user is not authorized to edit (2 ms)
 
-      ✓ should return 500 for unexpected errors (2 ms)
+  ✓ should return 500 for unexpected errors (2 ms)
 
-    getAllUsers
+#### getAllUsers
 
-      ✓ should return all users (1 ms)
+  ✓ should return all users (1 ms)
 
-      ✓ should return 500 for unexpected errors (2 ms)
+  ✓ should return 500 for unexpected errors (2 ms)
 
-    deleteUser
+#### deleteUser
 
-      ✓ should delete a user and return 204 (1 ms)
+  ✓ should delete a user and return 204 (1 ms)
 
-      ✓ should return 500 for unexpected errors (2 ms)
+  ✓ should return 500 for unexpected errors (2 ms)
 
-    getUserPosts
+#### getUserPosts
 
-      ✓ should return user posts (1 ms)
+  ✓ should return user posts (1 ms)
 
-      ✓ should return 500 for unexpected errors (2 ms)
+  ✓ should return 500 for unexpected errors (2 ms)
 
-    getTopUsersWithLatestComments
+#### getTopUsersWithLatestComments
 
-      ✓ should return top users with latest comments (6 ms)
+  ✓ should return top users with latest comments (6 ms)
 
-      ✓ should return 500 for unexpected errors (1 ms)
+  ✓ should return 500 for unexpected errors (1 ms)
+
+### PostService
+#### getAllPosts
+  ✓ should return all posts (10 ms)
+#### createPost
+  ✓ should create a new post (1 ms)
+#### getPostById
+  ✓ should return a post by ID (1 ms)
+
+  ✓ should throw ApiError if post is not found (24 ms)
+
+  ✓ should throw DatabaseError on other errors (4 ms)
+
+#### getPostsByUser
+  ✓ should return posts by user ID (1 ms)
+#### updatePost
+  ✓ should update a post
+
+  ✓ should throw ApiError if post is not found or unauthorized (2 ms)
+#### deletePost
+  ✓ should delete a post (1 ms)
+  
+  ✓ should throw DatabaseError on failure (2 ms)
+
+### PostController
+#### createPost
+  ✓ should create a new post (11 ms)
+
+  ✓ should handle database errors gracefully (8 ms)
+#### getAllPosts
+  ✓ should return all posts (2 ms)
+
+#### getPostById
+  ✓ should return a post by ID (2 ms)
+
+  ✓ should handle not found error (2 ms)
+#### updatePost
+  ✓ should update a post (2 ms)
+
+  ✓ should handle authorization errors (2 ms)
+#### deletePost
+  ✓ should delete a post (2 ms)
+
+  ✓ should handle deletion errors (3 ms)
+
+### CommentController
+#### createComment
+  ✓ should create a comment and return 201 status (8 ms)
+  
+  ✓ should handle errors when creating a comment (7 ms)
+#### getCommentsByPostId
+  ✓ should return a list of comments for a post (1 ms)
+
+  ✓ should handle errors when fetching comments (2 ms)
+#### updateComment
+  ✓ should update a comment and return the updated comment (2 ms)
+
+  ✓ should handle errors when updating a comment (2 ms)
+#### deleteComment
+  ✓ should delete a comment and return 204 status (2 ms)
+
+  ✓ should handle errors when deleting a comment (1 ms)
+
+### CommentService
+#### createComment
+  ✓ should create a comment successfully (7 ms)
+
+  ✓ should throw an ApiError if the post does not exist (20 ms)
+#### updateComment
+  ✓ should update a comment successfully (1 ms)
+
+  ✓ should throw an ApiError if the comment is not found (9 ms)
+#### deleteComment
+  ✓ should delete a comment successfully (1 ms)
+  
+  ✓ should throw an ApiError if the comment is not found (2 ms)
 
 
 ## Server Details

@@ -21,7 +21,7 @@ export class PostController {
       if (error instanceof DatabaseError) {
         res.status(500).json({ message: error.message });
       } else {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Error deleting post" });
       }
     }
   };
@@ -34,7 +34,7 @@ export class PostController {
       if (error instanceof DatabaseError) {
         res.status(500).json({ message: error.message });
       } else {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Error deleting post" });
       }
     }
   };
@@ -50,7 +50,7 @@ export class PostController {
       } else if (error instanceof DatabaseError) {
         res.status(500).json({ message: error.message });
       } else {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Error deleting post" });
       }
     }
   };
@@ -64,7 +64,7 @@ export class PostController {
       if (error instanceof DatabaseError) {
         res.status(500).json({ message: error.message });
       } else {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Error deleting post" });
       }
     }
   };
@@ -83,7 +83,7 @@ export class PostController {
       } else if (error instanceof DatabaseError) {
         res.status(500).json({ message: error.message });
       } else {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Error deleting post" });
       }
     }
   };
@@ -98,7 +98,7 @@ export class PostController {
       if (error instanceof ApiError) {
         res.status(error.statusCode).json({ message: error.message });
       } else {
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "Error deleting post" });
       }
     }
   };

@@ -9,9 +9,15 @@ module.exports = {
   collectCoverageFrom: [
     "src/controllers/auth.controller.ts",
     "src/controllers/user.controller.ts",
+    "src/controllers/post.controller.ts",
+    "src/controllers/comment.controller.ts",
     "src/models/user.model.ts",
+    "src/models/comment.model.ts",
+    "src/models/post.model.ts",
     "src/services/auth.service.ts",
-    "src/services/user.service.ts"
+    "src/services/user.service.ts",
+    "src/services/post.service.ts",
+    "src/services/comment.service.ts",
   ],
   coverageDirectory: "coverage",
   coverageReporters: ["text", "lcov"],
